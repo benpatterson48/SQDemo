@@ -23,8 +23,8 @@ then
     brew install sonar-scanner
     
     # Convert `.xcresult` to SonarQube generic XML format
-    bash ci_scripts/xccov-to-sonarqube-generic.sh /Volumes/workspace/*.xcresult > ci_scripts/AAAAA.xml
-    cat ci_scripts/AAAAA.xml | grep file
+    bash ci_scripts/xccov-to-sonarqube-generic.sh /Volumes/workspace/*.xcresult > AAAAA.xml
+    cat AAAAA.xml | grep file
     
     SONAR_ARGS=(
       -Dsonar.projectBaseDir=/Volumes/workspace/repository \
@@ -32,7 +32,7 @@ then
       -Dsonar.projectKey=benpatterson48_SQDemo \
       -Dsonar.sources=. \
       -Dsonar.host.url=https://sonarcloud.io \
-      -Dsonar.coverageReportPaths=ci_scripts/AAAAA.xml \
+      -Dsonar.coverageReportPaths=AAAAA.xml \
       -Dsonar.scm.provider=git
     )
     
