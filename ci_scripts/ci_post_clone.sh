@@ -12,7 +12,7 @@ then
 echo "Raw target branch: $CI_PULL_REQUEST_TARGET_BRANCH"
 echo "Raw source branch: $CI_PULL_REQUEST_SOURCE_BRANCH"
 
-  git -C "$REPO_PATH" remote add fork "https://x-access-token:${SQ_DEMO_TOKEN}@github.com/Chinchillord/SQDemo.git"
+  git -C "$REPO_PATH" remote add fork "https://x-access-token:${SQ_DEMO_TOKEN}@github.com/benpatterson48/SQDemo.git"
   git -C "$REPO_PATH" fetch origin "$CI_PULL_REQUEST_TARGET_BRANCH"
   git -C "$REPO_PATH" fetch fork "$CI_PULL_REQUEST_SOURCE_BRANCH"
 
