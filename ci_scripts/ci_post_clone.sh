@@ -12,13 +12,10 @@ then
 echo "Raw target branch: $CI_PULL_REQUEST_TARGET_BRANCH"
 echo "Raw source branch: $CI_PULL_REQUEST_SOURCE_BRANCH"
 
-# Clean the PR branch names (strip everything before final component)
-CI_PR_TARGET_CLEANED=$(echo "$CI_PULL_REQUEST_TARGET_BRANCH" | sed -E 's#.*/##')
-CI_PR_SOURCE_CLEANED=$(echo "$CI_PULL_REQUEST_SOURCE_BRANCH" | sed -E 's#.*/##')
+  git -C "$REPO_PATH" remote add fork "https://github.com/${CI_PULL_REQUEST_REPO_OWNER}/${CI_PULL_REQUEST_REPO_NAME}.git"
+  git -C "$REPO_PATH" fetch origin "$CI_PULL_REQUEST_TARGET_BRANCH"
+  git -C "$REPO_PATH" fetch fork "$CI_PULL_REQUEST_SOURCE_BRANCH"
 
-echo "Cleaned target: $CI_PR_TARGET_CLEANED"
-echo "Cleaned source: $CI_PR_SOURCE_CLEANED"
-
-  git -C $REPO_PATH fetch origin $CI_PR_SOURCE_CLEANED:$CI_PR_SOURCE_CLEANED
-  git -C $REPO_PATH fetch origin $CI_PR_TARGET_CLEANED:$CI_PR_TARGET_CLEANED
+echo "Branches available after fetch:"
+git -C "$REPO_PATH" branch -a
 fi
