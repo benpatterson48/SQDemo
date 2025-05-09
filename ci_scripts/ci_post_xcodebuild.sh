@@ -24,7 +24,7 @@ then
     
     # Convert `.xcresult` to SonarQube generic XML format
     bash ci_scripts/xccov-to-sonarqube-generic.sh /Volumes/workspace/*.xcresult > ci_scripts/AAAAA.xml
-    cat ci_scripts/coverage-sonarqube.xml | grep file
+    cat ci_scripts/AAAAA.xml | grep file
     
     SONAR_ARGS=(
       -Dsonar.projectBaseDir=/Volumes/workspace/repository \
