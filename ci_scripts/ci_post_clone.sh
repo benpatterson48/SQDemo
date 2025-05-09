@@ -8,9 +8,16 @@ then
   # this will allow SonarQube analysis to work
   git -C $REPO_PATH checkout -b temp
 
-  # Clean the PR target branch name to ensure it doesn't contain path-like components
-  CI_PR_TARGET_CLEANED=$(basename "$CI_PULL_REQUEST_TARGET_BRANCH")
-  CI_PR_SOURCE_CLEANED=$(basename "$CI_PULL_REQUEST_SOURCE_BRANCH")
+# Debug to verify what we're actually receiving
+echo "Raw target branch: $CI_PULL_REQUEST_TARGET_BRANCH"
+echo "Raw source branch: $CI_PULL_REQUEST_SOURCE_BRANCH"
+
+# Clean the PR branch names (strip everything before final component)
+CI_PR_TARGET_CLEANED=$(echo "$CI_PULL_REQUEST_TARGET_BRANCH" | sed -E 's#.*/##')
+CI_PR_SOURCE_CLEANED=$(echo "$CI_PULL_REQUEST_SOURCE_BRANCH" | sed -E 's#.*/##')
+
+echo "Cleaned target: $CI_PR_TARGET_CLEANED"
+echo "Cleaned source: $CI_PR_SOURCE_CLEANED"
 
   git -C $REPO_PATH config remote.origin.fetch \
     "+refs/heads/$CI_PR_SOURCE_CLEANED:refs/remotes/origin/$CI_PR_SOURCE_CLEANED"
