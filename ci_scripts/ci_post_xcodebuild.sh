@@ -24,6 +24,7 @@ then
     
     # Convert `.xcresult` to SonarQube generic XML format
     bash xccov-to-sonarqube-generic.sh /Volumes/workspace/*.xcresult > AAAAA.xml
+    cat AAAAA.xml | grep file
     
     SONAR_ARGS=(
       -Dsonar.projectBaseDir=/Volumes/workspace/repository \
