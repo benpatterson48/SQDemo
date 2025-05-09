@@ -42,6 +42,11 @@ private func printNoTest() {
     print("Not a test")
 }
 
+private func printNoTestAgain() {
+    print("Not a test")
+    print("Not a test")
+}
+
 @Observable
 final class CounterViewModel: Countable, ObservableObject {
     var count = 0
