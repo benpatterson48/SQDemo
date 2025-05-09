@@ -14,6 +14,7 @@ final class MockCountable: Countable {
     var incrementCalled = false
     var decrementCalled = false
     var resetCalled = false
+    var burstCalled = false
 
     func increment() {
         incrementCalled = true
@@ -28,6 +29,10 @@ final class MockCountable: Countable {
     func reset() {
         resetCalled = true
         count = 0
+    }
+    
+    func burst() {
+        count += 10
     }
 }
 
@@ -74,5 +79,11 @@ final class CounterViewModelTests: XCTestCase {
         mockCounter.reset()
         XCTAssertTrue(mockCounter.resetCalled, "Reset should be called.")
         XCTAssertEqual(mockCounter.count, 0, "Count should reset to zero.")
+    }
+    
+    func test_BURST_IncreasesCountByTen() {
+        mockCounter.burst()
+        XCTAssertTrue(mockCounter.burstCalled, "Burst should be called.")
+        XCTAssertEqual(mockCounter.count, 10, "Count should be increased by 10.")
     }
 }

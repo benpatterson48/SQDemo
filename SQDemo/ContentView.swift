@@ -12,6 +12,7 @@ protocol Countable {
     func increment()
     func decrement()
     func reset()
+    func burst()
 }
 
 private func notInCoverage() {
@@ -61,6 +62,10 @@ final class CounterViewModel: Countable, ObservableObject {
     
     func reset() {
         count = 0
+    }
+    
+    func burst() {
+        count += 10
     }
 }
 
