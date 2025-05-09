@@ -23,7 +23,7 @@ then
     brew install sonar-scanner
     
     # Convert `.xcresult` to SonarQube generic XML format
-    bash ci_scripts/xccov-to-sonarqube-generic.sh /Volumes/workspace/*.xcresult > ci_scripts/coverage-sonarqube.xml
+    bash ci_scripts/xccov-to-sonarqube-generic.sh /Volumes/workspace/*.xcresult > ci_scripts/AAAAA.xml
     cat ci_scripts/coverage-sonarqube.xml | grep file
     
     SONAR_ARGS=(
