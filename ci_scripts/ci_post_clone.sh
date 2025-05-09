@@ -19,9 +19,6 @@ CI_PR_SOURCE_CLEANED=$(echo "$CI_PULL_REQUEST_SOURCE_BRANCH" | sed -E 's#.*/##')
 echo "Cleaned target: $CI_PR_TARGET_CLEANED"
 echo "Cleaned source: $CI_PR_SOURCE_CLEANED"
 
-  git -C $REPO_PATH config remote.origin.fetch \
-    "+refs/heads/$CI_PR_SOURCE_CLEANED:refs/remotes/origin/$CI_PR_SOURCE_CLEANED"
-  git -C $REPO_PATH config remote.origin.fetch \
-    "+refs/heads/$CI_PR_TARGET_CLEANED:refs/remotes/origin/$CI_PR_TARGET_CLEANED"
-  git -C $REPO_PATH fetch
+  git -C $REPO_PATH fetch origin $CI_PR_SOURCE_CLEANED:$CI_PR_SOURCE_CLEANED
+  git -C $REPO_PATH fetch origin $CI_PR_TARGET_CLEANED:$CI_PR_TARGET_CLEANED
 fi
