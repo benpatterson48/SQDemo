@@ -48,16 +48,6 @@ then
     fi
 
     sonar-scanner "${SONAR_ARGS[@]}"
-    
-#    # Run sonar-scanner to upload coverage to SonarCloud
-#    sonar-scanner \
-#      -Dsonar.projectBaseDir=/Volumes/workspace/repository \
-#      -Dsonar.organization=benpatterson48 \
-#      -Dsonar.projectKey=benpatterson48_SQDemo \
-#      -Dsonar.sources=. \
-#      -Dsonar.host.url=https://sonarcloud.io \
-#      -Dsonar.coverageReportPaths=ci_scripts/AAAAA.xml \
-#      -Dsonar.scm.provider=git
 else
     echo "==> Not running sonar-scanner or PR check process."
 fi

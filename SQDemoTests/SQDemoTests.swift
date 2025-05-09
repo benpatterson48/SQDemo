@@ -32,6 +32,7 @@ final class MockCountable: Countable {
     }
     
     func burst() {
+        burstCalled = true
         count += 10
     }
 }
